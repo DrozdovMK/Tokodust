@@ -8,9 +8,13 @@ def stretch_trap(trap, l=int(np.pi*480)):
         out_matrix[k,:,:] = cv2.resize(string_without_nulls, (3,trap.shape[1]), interpolation = cv2.INTER_CUBIC)
     out_matrix = cv2.resize(out_matrix, (l, out_matrix.shape[1]), interpolation = cv2.INTER_CUBIC)
     return out_matrix
-def stretch_sequence_of_traps(traps):
-    out_image = stretch_trap(traps[0])
+def stretch_sequence_of_traps(path = 'E:/Tokodust/data_frames/8.1/'):
+    trap_1 = cv2.imread(path + '000.png')
+    out_image = stretch_trap(trap_1)
+    i = 1
     for trap in traps[1:]:
-        out_image = cv2.vconcat([out_image, stretch_trap(trap)])
+        trap_1 = cv2.imread(path + '{:03d}.png'.format(i))
+        out_image = cv2.vconcat([out_image, stretch_trap(trap_1)])
+        i+=1
     return out_image
-        
+
