@@ -49,8 +49,8 @@ class MainWindow(QWidget):
         # self.move(qr.topLeft())
 
     def StartProgram(self):
-        # Main()
-        im = imread(self.line.text())
+        Main(self.line.text())
+        im = imread('2dmap_1_Gauss.png')
         plt.imshow(im)
         plt.show()
 
