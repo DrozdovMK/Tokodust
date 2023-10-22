@@ -26,4 +26,13 @@ def Segmentize(image_filtered):
     bounds = segmentation.mark_boundaries(image_filtered, a,color=(240, 0, 0), mode = 'thick')
     plt.imshow(bounds)
     #cv2.imwrite('2dmap_1_with_Segments.png', bounds)
-    return bounds.astype(np.uint8)
+    return bounds
+
+def Segmentize_without_plt(image_filtered):
+
+    gray_image = cv2.cvtColor(image_filtered, cv2.COLOR_BGR2GRAY)
+    _, a = cv2.threshold(gray_image, 134, 255, cv2.THRESH_BINARY)
+    bounds = segmentation.mark_boundaries(image_filtered, a,color=(240, 0, 0), mode = 'thick')
+    #plt.imshow(bounds)
+    #cv2.imwrite('2dmap_1_with_Segments.png', bounds)
+    return bounds
